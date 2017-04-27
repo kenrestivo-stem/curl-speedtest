@@ -20,9 +20,9 @@ echo "using $filename"
 ##need sed now because some european versions of curl insert a , in the speed results
 speedtest () {
 	dlspeed=$(curl --connect-timeout 8 http://$1/$fileName -w "%{speed_download}" -o $fileName -s | sed "s/\,/\./g" && echo "/1048576");
-	echo "$dlspeed"
+	echo "$dlspeed MB/s download"
 	ulspeed=$(curl --connect-timeout 8 -F "file=@$fileName" http://$1/webtests/ul.php -w "%{speed_upload}" -s -o /dev/null | sed "s/\,/\./g" && echo "/1048576");
-	echo "$ulspeed"
+	echo "$ulspeed MB/s upload"
 }
 
 ls "$fileName" 1>/dev/null 2>/dev/null;
