@@ -3,17 +3,19 @@
 # created by "black" on LET
 # please give credit if you plan on using this for your own projects 
 
-fileName="100mb.test";
-#check if user wants 100MB files instead
-##NOTE: testing with 100MB by default
-#ls "FORCE100MBFILESPEEDTEST" 2>/dev/null 1>/dev/null;
-#if [ $? -eq 0 ]
-#then
-#	#echo "Forcing 100MB speed test";
-#	fileName="100mb.test";
-#	#remove this file after filename variable as been set
-#	rm FORCE100MBFILESPEEDTEST;
-#fi
+# uses 10mb file by default.
+# if you give it an argument 100  it will use that instead.
+
+
+fileName="10mb.test";
+
+
+if [ "$1" ]; then
+    fileName="${1}mb.test"
+fi
+
+echo "using $filename"
+
 
 ##need sed now because some european versions of curl insert a , in the speed results
 speedtest () {
